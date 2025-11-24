@@ -1,0 +1,12 @@
+[
+    {"text": "Hôm nay tôi rất vui", "label": "POSITIVE"},
+    {"text": "Món ăn này dở quá", "label": "NEGATIVE"},
+    {"text": "Thời tiết bình thường", "label": "NEUTRAL"},
+    {"text": "Rất vui hôm nay", "label": "POSITIVE"},
+    {"text": "Công việc ổn định", "label": "NEUTRAL"},
+    {"text": "Phim này hay lắm", "label": "POSITIVE"},
+    {"text": "Tôi buồn vì thất bại", "label": "NEGATIVE"},
+    {"text": "Ngày mai đi học", "label": "NEUTRAL"},
+    {"text": "Cảm ơn bạn rất nhiều", "label": "POSITIVE"},
+    {"text": "Mệt mỏi quá hôm nay", "label": "NEGATIVE"}
+]
