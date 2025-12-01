@@ -1,15 +1,18 @@
-from datasets import load_dataset
+from datasets import Dataset
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 from sklearn.metrics import accuracy_score, f1_score
 import torch
+import kagglehub
+import pandas as pd
 
 # =======================
 # 1️ Load dataset
 # =======================
-dataset = load_dataset("minhtoan/vietnamese-comment-sentiment")
-
-# Split 10% làm test
-dataset = dataset["train"].train_test_split(test_size=0.1, seed=42)
+path = kagglehub.dataset_download("linhlpv/vietnamese-sentiment-analyst")
+csv_path = f"{path}/data.csv"
+df = pd.read_csv(csv_path, encoding="latin1")
+dataset = Dataset.from_pandas(df, preserve_index=False)
+dataset = dataset.train_test_split(test_size=0.1, seed=42)
 print(dataset)
 
 # =======================
@@ -18,18 +21,17 @@ print(dataset)
 label2id = {"negative": 0, "neutral": 1, "positive": 2}
 id2label = {0: "negative", 1: "neutral", 2: "positive"}
 vi2en = {
-    "Tiêu cực": "negative",
-    "Trung lập": "neutral",
-    "Tích cực": "positive"
+    "NEG": "negative",
+    "NEU": "neutral",
+    "POS": "positive"
 }
-
 # =======================
 # 3️ Load PhoBERT tokenizer
 # =======================
 tokenizer = AutoTokenizer.from_pretrained("vinai/phobert-base-v2")
 
 def tokenize(batch):
-    texts = [str(x) if x is not None else "" for x in batch["Content"]]
+    texts = [str(x) if x is not None else "" for x in batch["content"]]
     return tokenizer(texts, truncation=True, padding="max_length", max_length=128)
 
 dataset = dataset.map(tokenize, batched=True)
@@ -39,8 +41,8 @@ dataset = dataset.map(tokenize, batched=True)
 # =======================
 def convert_label(batch):
     labels = []
-    for s in batch["Sentiment"]:
-        s_en = vi2en.get(s, s)  # đổi Tiếng Việt sang Tiếng Anh
+    for s in batch["label"]:
+        s_en = vi2en.get(s, s) 
         if s_en not in label2id:
             raise ValueError(f"Unknown label: {s_en}")
         labels.append(label2id[s_en])
