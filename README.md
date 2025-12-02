@@ -24,7 +24,7 @@ Install dependencies :
 ```
 ## Run the Sentiment Analysis App
 ```
-python main.py
+    python main.py
 ```
 ## Fine-tuning the PhoBERT Model
 
@@ -32,5 +32,5 @@ This project uses the Kaggle dataset : [Vietnamese Sentiment Analyst ](https://w
 
 To run Fine-tuning :
 ```
-python train_phobert.py
+    python train_phobert.py
 ```
