@@ -32,5 +32,5 @@ This project uses the Kaggle dataset : [Vietnamese Sentiment Analyst ](https://w
 
 To run Fine-tuning :
 ```
-    python train_phobert.py
+    python fine-tuning.py
 ```
