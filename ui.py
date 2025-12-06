@@ -1,4 +1,3 @@
-# ui.py
 import tkinter as tk
 from tkinter import scrolledtext
 from model import predict_sentiment

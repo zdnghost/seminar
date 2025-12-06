@@ -1,4 +1,3 @@
-# main.py
 import tkinter as tk
 from database import init_db
 from ui import create_ui
