@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
-MODEL_PATH = "phobert-sentiment"
+MODEL_PATH = "zdnghost/phobert-sentiment"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
 model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
@@ -12,7 +12,7 @@ model.to(device)
 model.eval()# Chuyển sang chế độ inference
 
 # Trọng số lớp giúp tăng độ chính xác cho các lớp mất cân bằng
-class_weights = torch.tensor([2.0, 0.5, 0.3]).to(device)
+class_weights = torch.tensor([2.0, 0.3, 0.3]).to(device)
 # Mapping từ ID → nhãn cảm xúc
 id2label = {0: "negative", 1: "neutral", 2: "positive"}
 
