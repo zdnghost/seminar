@@ -2,3 +2,5 @@ output_phobert_sentiment/
 phobert-sentiment/
 dist/
 build/
+__pycache__/
+sentiment.db
